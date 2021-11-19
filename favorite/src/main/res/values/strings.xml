@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="favorite_game">Favorite Game</string>
+    <string name="no_favorite_game">No Favorite Game</string>
+</resources>

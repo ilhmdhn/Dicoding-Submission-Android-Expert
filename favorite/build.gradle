@@ -1,0 +1,47 @@
+plugins {
+    id 'com.android.dynamic-feature'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+apply from: '../shared_dependencies.gradle'
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.ilhmdhn.gameku.favorite"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation project(":core")
+    implementation project(":app")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
