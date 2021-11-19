@@ -90,6 +90,11 @@ class DetailActivity : AppCompatActivity() {
         _binding = null
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAfterTransition()
+    }
+
     companion object {
         const val EXTRA_DATA = "extra_data"
     }
