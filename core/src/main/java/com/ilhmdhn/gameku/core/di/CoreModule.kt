@@ -36,12 +36,12 @@ val databaseModule = module {
 
 val networkModule = module {
     single {
-        val hostname = "api.rawg.io"
+        val hostname = BuildConfig.HOSTNAME
         val certificatePinner = CertificatePinner.Builder()
-            .add(hostname, "sha256/UGwY2lttaRoHnGd1gpeydmov1LzioQpzYTywtNSJkAU=")
-            .add(hostname, "sha256/hS5jJ4P+iQUErBkvoWBQOd1T7VOAYlOVegvv1iMzpxA=")
-            .add(hostname, "sha256/R+V29DqDnO269dFhAAB5jMlZHepWpDGuoejXJjprh7A=")
-            .add(hostname, "sha256/FEzVOUp4dF3gI0ZVPRJhFbSJVXR+uQmMH65xhs1glH4=")
+            .add(hostname, BuildConfig.CERTIFICATE_PINNING1)
+            .add(hostname, BuildConfig.CERTIFICATE_PINNING2)
+            .add(hostname, BuildConfig.CERTIFICATE_PINNING3)
+            .add(hostname, BuildConfig.CERTIFICATE_PINNING4)
             .build()
         OkHttpClient.Builder()
             .addInterceptor ( HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
