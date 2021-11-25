@@ -1,9 +1,9 @@
 package com.ilhmdhn.gameku.core.ui
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ilhmdhn.gameku.core.R
@@ -14,14 +14,14 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.ListViewHolder>() {
     private var listData = ArrayList<GameListModel>()
     var onItemClick: ((GameListModel) -> Unit)? = null
 
-    @SuppressLint("NotifyDataSetChanged")
     fun setData(newListData: List<GameListModel>?){
-        if (newListData == null) return
+        val diffCallback = newListData?.let { GameDiffCallback(listData, it) }
+        val diffResult = diffCallback?.let { DiffUtil.calculateDiff(it) }
         listData.clear()
-        listData.addAll(newListData)
-
-//      masih menggunakan notifyDataSetChanged() karena masih belum bisa menerapkan DiffUtil di module juga belum dijelaskan
-        notifyDataSetChanged()
+        if (newListData != null) {
+            listData.addAll(newListData)
+        }
+        diffResult?.dispatchUpdatesTo(this)
     }
 
     inner class ListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
